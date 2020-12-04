@@ -1,0 +1,29 @@
+version: '3'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+    privileged: true
+    volumes:
+        - ./nginx/logs:/var/www/http/logs/
+        - ./nginx/conf.d:/etc/nginx/conf.d
+        - ./nginx/ssl:/etc/nginx/ssl
+        - /var/www:/var/www
+    networks:
+      - bridge
+  v2ray:
+    image: v2ray/official
+    container_name: v2ray
+    restart: always
+    command: v2ray -config=/etc/v2ray/config.json
+    ports:
+      - "11004:11004"
+    volumes:
+      - ./v2ray:/etc/v2ray
+
+networks:
+  bridge:
+    driver: bridge

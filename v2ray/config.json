@@ -1,0 +1,27 @@
+
+{
+  "log": {
+    "loglevel": "warning",
+    "error": "/etc/v2ray/error.log"
+  },
+  "inbounds": [
+    {
+      "port": 11004,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "341d99b5-524e-4862-984c-7037eab14fc2",
+            "alterId": 0
+          }
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ]
+}
