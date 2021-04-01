@@ -11,7 +11,7 @@ services:
         - ./nginx/logs:/var/www/http/logs/
         - ./nginx/conf.d:/etc/nginx/conf.d
         - ./nginx/ssl:/etc/nginx/ssl
-        - /var/www:/var/www
+        - ./http:/var/www/http
     networks:
       - bridge
   v2ray:
@@ -23,7 +23,14 @@ services:
       - "11004:11004"
     volumes:
       - ./v2ray:/etc/v2ray
-
+  golang:
+    container_name: golang
+    build: ./go
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./http:/var/www/http
+    tty: true
 networks:
   bridge:
     driver: bridge
