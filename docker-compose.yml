@@ -8,10 +8,10 @@ services:
       - 80:80
     privileged: true
     volumes:
-        - ./nginx/logs:/var/www/http/logs/
+        - ./nginx/logs:/var/www/logs/
         - ./nginx/conf.d:/etc/nginx/conf.d
         - ./nginx/ssl:/etc/nginx/ssl
-        - ./http:/var/www/http
+        - ./http/web/:/var/www/http/web/
     networks:
       - bridge
   v2ray:
