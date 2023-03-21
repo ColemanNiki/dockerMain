@@ -31,6 +31,21 @@ services:
     volumes:
       - ./http:/var/www/http
     tty: true
+  es:
+    container_name: es
+    build: ./es
+    volumes:
+      - ./es/data:/usr/share/elasticsearch/data
+      - ./es/plugins:/usr/share/elasticsearch/plugins
+      - ./es/es.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ports:
+      - '9200:9200'     #java、集群通信端口
+      - '9300:9300'     #http通信端口
+    networks:
+      - bridge
 networks:
   bridge:
     driver: bridge
